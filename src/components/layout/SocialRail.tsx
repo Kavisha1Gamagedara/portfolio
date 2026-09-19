@@ -10,7 +10,7 @@ export const SocialRail: React.FC = () => {
     },
     {
       name: 'GitHub',
-      url: 'https://github.com',
+      url: 'https://github.com/Kavisha1Gamagedara',
       icon: FaGithub,
     },
   ];

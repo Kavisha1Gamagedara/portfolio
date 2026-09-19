@@ -61,6 +61,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                   <NavLink
                     key={link.name}
                     to={link.path}
+                    end={link.path === '/'}
                     onClick={onClose}
                     className={({ isActive }) =>
                       `text-xl font-semibold transition-colors ${
@@ -105,16 +106,18 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <a
                   href="https://www.linkedin.com/in/kavisha-gamagedara-4513kavi"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:text-accent-dynamic transition-colors"
+                  aria-label="LinkedIn"
                 >
                   <FaLinkedinIn className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Kavisha1Gamagedara"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:text-accent-dynamic transition-colors"
+                  aria-label="GitHub"
                 >
                   <FaGithub className="w-4 h-4" />
                 </a>

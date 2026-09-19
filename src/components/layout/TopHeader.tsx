@@ -57,6 +57,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
               <NavLink
                 key={link.name}
                 to={link.path}
+                end={link.path === '/'}
                 className={({ isActive }) =>
                   `text-sm font-medium transition-colors relative py-1 ${
                     isActive
