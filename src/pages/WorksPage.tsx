@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { SectionTitle } from '../components/common/SectionTitle';
 import { ProjectDetailModal } from '../components/common/ProjectDetailModal';
 import { projectsData } from '../data/projects';
@@ -76,9 +76,27 @@ export const WorksPage: React.FC = () => {
                   {project.category}
                 </span>
 
-                {/* Arrow Icon */}
-                <div className="absolute top-3.5 right-3.5 p-2 rounded-full bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all">
-                  <ArrowUpRight className="w-4 h-4" />
+                {/* Top Overlay Actions */}
+                <div className="absolute top-3.5 right-3.5 flex items-center gap-2">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-accent-dynamic text-white dark:text-[#0e0f12] shadow-md hover:opacity-90 hover:scale-105 transition-all"
+                      title="Open Live Preview in new tab"
+                    >
+                      <span>Live Preview</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  <div
+                    className="p-2 rounded-full bg-white/10 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all"
+                    title="View project details"
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
                 </div>
               </div>
 
@@ -93,20 +111,35 @@ export const WorksPage: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Tags */}
-                <div className="mt-4 pt-4 border-t border-black/5 dark:border-white/5 flex flex-wrap gap-1.5">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-light-muted dark:text-dark-muted"
+                {/* Tags and Live Preview link */}
+                <div className="mt-4 pt-4 border-t border-black/5 dark:border-white/5 flex items-center justify-between gap-2">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-light-muted dark:text-dark-muted"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 3 && (
+                      <span className="text-[10px] px-1.5 py-0.5 text-light-muted dark:text-dark-muted">
+                        +{project.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-accent-dynamic hover:underline shrink-0"
                     >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 3 && (
-                    <span className="text-[10px] px-1.5 py-0.5 text-light-muted dark:text-dark-muted">
-                      +{project.tags.length - 3}
-                    </span>
+                      <span>Live Preview</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                   )}
                 </div>
               </div>
