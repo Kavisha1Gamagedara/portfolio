@@ -154,7 +154,7 @@ export const ContactsPage: React.FC = () => {
                     <a
                       href="https://www.linkedin.com/in/kavisha-gamagedara-4513kavi"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="text-sm font-semibold text-light-text dark:text-dark-text hover:text-accent-dynamic transition-colors"
                     >
                       in/kavisha-gamagedara-4513kavi

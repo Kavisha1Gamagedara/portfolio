@@ -106,7 +106,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <a
                 href={project.liveUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent-dynamic text-white dark:text-[#0e0f12] font-semibold text-sm hover:opacity-90 transition-opacity shadow-md"
               >
                 <span>Live Preview</span>
@@ -117,7 +117,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <a
                 href={project.githubUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-black/15 dark:border-white/15 text-light-text dark:text-dark-text font-medium text-sm hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
               >
                 <FaGithub className="w-4 h-4" />

@@ -7,6 +7,7 @@ import { BottomFooter } from './components/layout/BottomFooter';
 import { SocialRail } from './components/layout/SocialRail';
 import { MobileMenu } from './components/layout/MobileMenu';
 import { ScrollToTop } from './components/common/ScrollToTop';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
 import { ResumePage } from './pages/ResumePage';
 import { WorksPage } from './pages/WorksPage';
@@ -16,6 +17,7 @@ import { ContactsPage } from './pages/ContactsPage';
 export const App: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   return (
     <div className="relative min-h-screen bg-white dark:bg-[#0e0f12] text-[#111215] dark:text-[#ffffff] transition-colors duration-300 overflow-x-hidden selection:bg-accent-dynamic/20 selection:text-accent-dynamic">
@@ -41,26 +43,32 @@ export const App: React.FC = () => {
       <SocialRail />
 
       {/* Main Content Area with Smooth Page Route Transitions */}
-      <main className="relative z-10 px-6 sm:px-12 md:px-16 lg:px-20 min-h-screen flex flex-col justify-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full"
-          >
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/resume" element={<ResumePage />} />
-              <Route path="/works" element={<WorksPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/contacts" element={<ContactsPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </motion.div>
-        </AnimatePresence>
+      <main
+        className={`relative z-10 px-6 sm:px-12 md:px-16 lg:px-20 min-h-screen flex flex-col ${
+          isHome ? 'justify-center' : 'justify-start'
+        }`}
+      >
+        <ErrorBoundary>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full"
+            >
+              <Routes location={location}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/resume" element={<ResumePage />} />
+                <Route path="/works" element={<WorksPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/contacts" element={<ContactsPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </motion.div>
+          </AnimatePresence>
+        </ErrorBoundary>
       </main>
 
       {/* Fixed Bottom Left Email and Copyright */}

@@ -27,7 +27,7 @@ export const profileData: Profile = {
     },
     {
       name: 'GitHub',
-      url: 'https://github.com',
+      url: 'https://github.com/Kavisha1Gamagedara',
       icon: 'github',
     },
   ],

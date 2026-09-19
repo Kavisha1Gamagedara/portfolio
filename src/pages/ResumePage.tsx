@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, Briefcase, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { Download, Eye, Briefcase, GraduationCap, CheckCircle2 } from 'lucide-react';
 import { SectionTitle } from '../components/common/SectionTitle';
 import { experienceData, educationData, skillGroups } from '../data/resume';
-import cvPdf from '../assets/new_my_cv.pdf';
+
+const cvPdfUrl = '/Kavisha_Gamagedara_CV.pdf';
 
 export const ResumePage: React.FC = () => {
   return (
@@ -16,16 +17,28 @@ export const ResumePage: React.FC = () => {
           badge="Career Journey"
         />
 
-        <a
-          href={cvPdf}
-          download="Kavisha_Gamagedara_CV.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 self-start sm:self-center px-5 py-2.5 rounded-lg border border-black/15 dark:border-white/15 text-light-text dark:text-dark-text font-medium text-sm hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm group cursor-pointer"
-        >
-          <Download className="w-4 h-4 text-accent-dynamic group-hover:-translate-y-0.5 transition-transform" />
-          <span>Download CV</span>
-        </a>
+        <div className="flex flex-wrap items-center gap-3 self-start sm:self-center">
+          {/* View CV in new tab - renders PDF in browser viewer without blank page */}
+          <a
+            href={cvPdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent-dynamic text-white dark:text-[#0e0f12] font-semibold text-sm hover:opacity-90 transition-all shadow-sm group cursor-pointer"
+          >
+            <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            <span>View CV</span>
+          </a>
+
+          {/* Download CV - triggers file download in place without opening an orphan blank tab */}
+          <a
+            href={cvPdfUrl}
+            download="Kavisha_Gamagedara_CV.pdf"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-black/15 dark:border-white/15 text-light-text dark:text-dark-text font-medium text-sm hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm group cursor-pointer"
+          >
+            <Download className="w-4 h-4 text-accent-dynamic group-hover:-translate-y-0.5 transition-transform" />
+            <span>Download</span>
+          </a>
+        </div>
       </div>
 
       {/* Grid: Experience & Education */}
